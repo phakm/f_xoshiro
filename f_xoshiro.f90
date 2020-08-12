@@ -133,7 +133,10 @@ module f_xoshiro
         xoshiro_s(4) = s4
     end subroutine jump
 
-
+!+ This is the long-jump function for the generator. It is equivalent to
+!   2^192 calls to next(); it can be used to generate 2^64 starting points,
+!   from each of which jump() will generate 2^64 non-overlapping
+!   subsequences for parallel distributed computations.
     subroutine long_jump()
         implicit none
 

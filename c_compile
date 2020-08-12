@@ -1,7 +1,0 @@
-echo "Compiling and linking"
-g++ -c c_xoshiro.c
-g++ -c c_main.c
-g++ -o main c_xoshiro.o c_main.o
-
-echo "Running:"
-./main
