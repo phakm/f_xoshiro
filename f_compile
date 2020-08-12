@@ -1,0 +1,7 @@
+echo "Compiling and linking"
+gfortran -c f_xoshiro.f90
+gfortran -c f_main.f90
+gfortran -o f_main f_xoshiro.o f_main.o
+
+echo "Running"
+./f_main

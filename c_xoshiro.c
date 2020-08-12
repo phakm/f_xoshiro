@@ -21,23 +21,23 @@ See <http://creativecommons.org/publicdomain/zero/1.0/>. */
    output to fill s. */
 
 
-static uint64_t s[4];
+static uint64_t s[4] = {47518962306516675, 15908490285199694643, 11684981880420834742, 4521037334260557993};
 
 uint64_t next(void) {
-	const uint64_t result = rotl(s[0] + s[3], 23) + s[0];
+    const uint64_t result = rotl(s[0] + s[3], 23) + s[0];
 
-	const uint64_t t = s[1] << 17;
+    const uint64_t t = s[1] << 17;
 
-	s[2] ^= s[0];
-	s[3] ^= s[1];
-	s[1] ^= s[2];
-	s[0] ^= s[3];
+    s[2] ^= s[0];
+    s[3] ^= s[1];
+    s[1] ^= s[2];
+    s[0] ^= s[3];
 
-	s[2] ^= t;
+    s[2] ^= t;
 
-	s[3] = rotl(s[3], 45);
+    s[3] = rotl(s[3], 45);
 
-	return result;
+    return result;
 }
 
 
@@ -52,6 +52,7 @@ void jump(void) {
 	uint64_t s1 = 0;
 	uint64_t s2 = 0;
 	uint64_t s3 = 0;
+
 	for(int i = 0; i < sizeof JUMP / sizeof *JUMP; i++)
 		for(int b = 0; b < 64; b++) {
 			if (JUMP[i] & UINT64_C(1) << b) {
@@ -60,9 +61,9 @@ void jump(void) {
 				s2 ^= s[2];
 				s3 ^= s[3];
 			}
-			next();	
+                        bool t = (bool) (JUMP[i] & UINT64_C(1) << b);
+			next();
 		}
-		
 	s[0] = s0;
 	s[1] = s1;
 	s[2] = s2;
@@ -91,9 +92,9 @@ void long_jump(void) {
 				s2 ^= s[2];
 				s3 ^= s[3];
 			}
-			next();	
+			next();
 		}
-		
+
 	s[0] = s0;
 	s[1] = s1;
 	s[2] = s2;
