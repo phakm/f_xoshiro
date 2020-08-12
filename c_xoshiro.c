@@ -7,6 +7,7 @@ worldwide. This software is distributed without any warranty.
 See <http://creativecommons.org/publicdomain/zero/1.0/>. */
 
 #include <stdint.h>
+#include "c_xoshiro.h"
 
 /* This is xoshiro256++ 1.0, one of our all-purpose, rock-solid generators.
    It has excellent (sub-ns) speed, a state (256 bits) that is large
@@ -18,10 +19,6 @@ See <http://creativecommons.org/publicdomain/zero/1.0/>. */
    The state must be seeded so that it is not everywhere zero. If you have
    a 64-bit seed, we suggest to seed a splitmix64 generator and use its
    output to fill s. */
-
-static inline uint64_t rotl(const uint64_t x, int k) {
-	return (x << k) | (x >> (64 - k));
-}
 
 
 static uint64_t s[4];
